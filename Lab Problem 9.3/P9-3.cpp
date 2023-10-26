@@ -3,6 +3,7 @@
 // October 26th of 2023
 
 #include <iostream>
+#include <ctime>
 
 using namespace std;
 
@@ -11,12 +12,25 @@ bool hasRun(int array[], int size);
 
 int main(void)
 {
+	srand(time(0));
+	
 	const int SIZE = 20;
 
-	int arr[SIZE] = { 1, 3, 2, 3, 2, 3, 5, 4, 2, 3, 2, 3, 2, 3, 2, 3, 2, 3, 2, 3 };
+	while(true)
+	{
+		int arr[SIZE];
+		for (int i = 0; i < SIZE; i++)
+		{
+			arr[i] = rand() % 6 + 1;
+		}
 
-	hasRun(arr, SIZE) ? cout << "has run: " : cout << "no run: ";
-	displayRun(arr, SIZE);
+		hasRun(arr, SIZE) ? cout << "has run: " : cout << "no run: ";
+		displayRun(arr, SIZE);
+		if (hasRun(arr, SIZE))
+		{
+			break;
+		}
+	}
 
 	return 0;
 }
@@ -49,6 +63,8 @@ void displayRun(int array[], int size)
 
 		cout << " ";
 	}
+
+	cout << endl;
 }
 
 bool hasRun(int array[], int size)
